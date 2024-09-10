@@ -141,7 +141,8 @@ docx_path = 'data.docx'
 content = read_docx(docx_path)
 
 # Tạo bài thuyết trình PowerPoint
-pptx_path = 'presentation.pptx'
+pptx_path = 'output.pptx'
 create_presentation(content, pptx_path)
 
 print("Bài thuyết trình đã được lưu thành công.")
+print("Hãy vào phần Files và tải về tệp output.pptx để xem bài thuyết trình.")
