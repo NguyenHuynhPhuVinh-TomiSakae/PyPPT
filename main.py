@@ -119,10 +119,10 @@ def summarize_text(text):
 def create_presentation(content, output_path):
     # Tìm id mới cho file output
     new_id = 1
-    while os.path.exists(f'output{new_id}.pptx'):
+    while os.path.exists(f'output/output{new_id}.pptx'):
         new_id += 1
     
-    output_path = f'output{new_id}.pptx'
+    output_path = f'output/output{new_id}.pptx'
     
     prs = Presentation()
     prs.save(output_path)
