@@ -117,7 +117,15 @@ def summarize_text(text):
 
 # Tạo bài thuyết trình PowerPoint từ nội dung tóm tắt
 def create_presentation(content, output_path):
+    # Tìm id mới cho file output
+    new_id = 1
+    while os.path.exists(f'output{new_id}.pptx'):
+        new_id += 1
+    
+    output_path = f'output{new_id}.pptx'
+    
     prs = Presentation()
+    prs.save(output_path)
     
     for title, paragraphs in content.items():
         # Kết hợp các đoạn văn thành một văn bản duy nhất
@@ -135,14 +143,15 @@ def create_presentation(content, output_path):
         body_shape.text = summary
     
     prs.save(output_path)
+    return output_path
 
 # Đọc nội dung từ file data.docx
 docx_path = 'data.docx'
 content = read_docx(docx_path)
 
 # Tạo bài thuyết trình PowerPoint
-pptx_path = 'output.pptx'
-create_presentation(content, pptx_path)
+pptx_path = create_presentation(content, 'output.pptx')
 
 print("Bài thuyết trình đã được lưu thành công.")
-print("Hãy vào phần Files và tải về tệp output.pptx để xem bài thuyết trình.")
+print(f"Hãy tải về theo đường dẫn sau:")
+print(f"https://da22ttc-tvu.github.io/pptx?name={os.path.basename(pptx_path)}")
