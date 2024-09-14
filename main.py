@@ -120,11 +120,6 @@ def summarize_text(text):
         "Tổng hợp nội dung của chương này thành một đoạn súc tích nhưng đầy đủ thông tin: ",
         "Trình bày các khái niệm chính được đề cập trong chương này: ",
         "Hãy tóm tắt chương này dưới dạng một danh sách các điểm chính: ",
-        "Tóm tắt chương này bằng cách nhấn mạnh vào các ứng dụng và tác động của điện toán đám mây: ",
-        "Hãy tóm tắt chương này bằng cách nhấn mạnh vào lợi ích của điện toán đám mây đối với doanh nghiệp: ",
-        "Tóm tắt chương này dưới dạng một bài báo tin tức ngắn gọn: ",
-        "Tạo một bảng so sánh ngắn gọn giữa các khái niệm chính được đề cập trong chương này: ",
-        "Viết một đoạn văn ngắn giải thích nội dung chương này cho một người không có kiến thức về công nghệ: ",
     ]
     chosen_prompt = random.choice(prompts)
     response = chat_session.send_message(chosen_prompt + text)
