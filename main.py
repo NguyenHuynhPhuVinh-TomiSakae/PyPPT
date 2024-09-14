@@ -3,6 +3,7 @@ import docx
 import google.generativeai as genai
 from pptx import Presentation
 from pptx.util import Inches
+import random
 
 # Cấu hình API Key cho Google Generative AI
 genai.configure(api_key="AIzaSyB_eNpMTroPTupXzl_oey08M0d-luxJ3OE")
@@ -112,7 +113,33 @@ def summarize_text(text):
   ]
 )
     
-    response = chat_session.send_message("Hãy tóm tắt nội dung sau trong 1 dòng với số lượng chữ nhiều: " + text)
+    prompts = [
+        "Tóm tắt nội dung chính của chương này trong một câu dài và chi tiết: ",
+        "Trình bày các điểm quan trọng nhất của chương này trong một đoạn ngắn gọn: ",
+        "Hãy tóm lược chương này thành 3-4 ý chính: ",
+        "Tổng hợp nội dung của chương này thành một đoạn súc tích nhưng đầy đủ thông tin: ",
+        "Trình bày các khái niệm chính được đề cập trong chương này: ",
+        "Hãy tóm tắt chương này dưới dạng một danh sách các điểm chính: ",
+        "Tóm lược chương này bằng cách sử dụng các từ khóa quan trọng: ",
+        "Trình bày nội dung chính của chương này dưới dạng một sơ đồ tư duy ngắn gọn: ",
+        "Hãy diễn giải các ý chính của chương này dưới dạng câu hỏi và trả lời ngắn gọn: ",
+        "Tóm tắt chương này bằng cách nhấn mạnh vào các ứng dụng và tác động của điện toán đàn hồi: ",
+        "Trình bày các thách thức và giải pháp được đề cập trong chương này: ",
+        "Hãy tóm lược chương này bằng cách so sánh điện toán truyền thống và điện toán đàn hồi: ",
+        "Tổng hợp nội dung chính của chương này dưới dạng một tin tức ngắn về sự phát triển của ngành điện toán: ",
+        "Trình bày ý chính của chương này dưới dạng một câu slogan về tương lai của điện toán đám mây: ",
+        "Hãy tóm tắt chương này bằng cách nhấn mạnh vào lợi ích của điện toán đàn hồi đối với doanh nghiệp: ",
+        "Tạo một infographic đơn giản bằng văn bản để minh họa các khái niệm chính của chương này: ",
+        "Viết một đoạn hội thoại ngắn giữa hai chuyên gia về nội dung chính của chương này: ",
+        "Tóm tắt chương này dưới dạng một bài thơ ngắn hoặc haiku: ",
+        "Tạo một timeline ngắn gọn về sự phát triển của điện toán đàn hồi dựa trên nội dung chương này: ",
+        "Viết một đoạn quảng cáo ngắn về điện toán đàn hồi dựa trên thông tin từ chương này: ",
+        "Tóm tắt chương này dưới dạng một bài báo tin tức ngắn gọn: ",
+        "Tạo một bảng so sánh ngắn gọn giữa các khái niệm chính được đề cập trong chương này: ",
+        "Viết một đoạn văn ngắn giải thích nội dung chương này cho một người không có kiến thức về công nghệ: ",
+    ]
+    chosen_prompt = random.choice(prompts)
+    response = chat_session.send_message(chosen_prompt + text)
     return response.text
 
 # Tạo bài thuyết trình PowerPoint từ nội dung tóm tắt
